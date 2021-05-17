@@ -3,8 +3,8 @@ import mongoose, { Schema, Document, Model } from 'mongoose'
 export type UserAttributes = {
   name: string;
   lastname: string;
-  phone: number;
-  cpf: number;
+  phone: string;
+  cpf: string;
 }
 
 export type UserDocument = Document & UserAttributes
@@ -24,14 +24,15 @@ const UserSchema = new Schema(
       required: true
     },
     phone: {
-      type: Number,
+      type: String,
+      trim: true,
       required: true
     },
     cpf: {
-      type: Number,
+      type: String,
       unique: true,
-      min: 11,
-      max: 11,
+      minLength: 11,
+      trim: true,
       required: true
     },
   },
